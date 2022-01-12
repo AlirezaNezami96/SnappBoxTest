@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "428682279270",
+    "project_id": "snappbox-803ab",
+    "storage_bucket": "snappbox-803ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428682279270:android:53dccc4bf8c6e5f8c5b0a7",
+        "android_client_info": {
+          "package_name": "com.mindlab.mapboxtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428682279270-connsdimgcg8v44atpc3aato7o455vo0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzzMqd6UhFtfuytz7jaxSqSgWin0gCt8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428682279270-connsdimgcg8v44atpc3aato7o455vo0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
