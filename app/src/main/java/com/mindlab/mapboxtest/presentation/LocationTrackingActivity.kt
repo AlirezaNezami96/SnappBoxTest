@@ -4,7 +4,11 @@ package com.mindlab.mapboxtest.presentation
  * Created by Alireza Nezami on 1/12/2022.
  */
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import com.mapbox.android.gestures.MoveGestureDetector
@@ -16,10 +20,11 @@ import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
-
 import com.mindlab.mapboxtest.R
+import com.mindlab.mapboxtest.utils.Constants
 import com.mindlab.mapboxtest.utils.LocationPermissionHelper
 import java.lang.ref.WeakReference
+
 
 class LocationTrackingActivity : AppCompatActivity() {
 
@@ -60,6 +65,24 @@ class LocationTrackingActivity : AppCompatActivity() {
         locationPermissionHelper = LocationPermissionHelper(WeakReference(this))
         locationPermissionHelper.checkPermissions {
             onMapReady()
+        }
+
+//        getAppOverlayPermission()
+        getIntentExtras(intent)
+    }
+
+    private fun getAppOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val intent =
+                Intent(ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
+            startActivity(intent)
+        }
+    }
+
+    private fun getIntentExtras(intent: Intent) {
+        val extras = intent.extras
+        extras?.let {
+            val offer = extras.getSerializable(Constants.OFFER_EXTRA)
         }
     }
 
