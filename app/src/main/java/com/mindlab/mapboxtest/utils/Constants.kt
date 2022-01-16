@@ -5,4 +5,7 @@ package com.mindlab.mapboxtest.utils
  */
 object Constants {
     const val OFFER_EXTRA = "offer_extra"
+
+    const val CHANNEL_ID = "New Offer"
+    const val CHANNEL_NAME = "SnappBox New Offer"
 }

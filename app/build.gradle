@@ -25,6 +25,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.31'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -41,6 +50,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:22.0.0'
     testImplementation 'junit:junit:4.+'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
@@ -50,6 +60,11 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation 'androidx.activity:activity-compose:1.4.0'
+
 
 
 }

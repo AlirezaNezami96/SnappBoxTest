@@ -4,12 +4,9 @@ package com.mindlab.mapboxtest.presentation
  * Created by Alireza Nezami on 1/12/2022.
  */
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION
-import androidx.appcompat.app.AppCompatActivity
+import android.view.WindowManager
 import androidx.appcompat.content.res.AppCompatResources
 import com.mapbox.android.gestures.MoveGestureDetector
 import com.mapbox.maps.*
@@ -21,12 +18,12 @@ import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListene
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
 import com.mindlab.mapboxtest.R
-import com.mindlab.mapboxtest.utils.Constants
+import com.mindlab.mapboxtest.presentation.base.BaseActivity
 import com.mindlab.mapboxtest.utils.LocationPermissionHelper
+import com.mindlab.mapboxtest.utils.PermissionUtil
 import java.lang.ref.WeakReference
 
-
-class LocationTrackingActivity : AppCompatActivity() {
+class LocationTrackingActivity : BaseActivity() {
 
     private lateinit var locationPermissionHelper: LocationPermissionHelper
 
@@ -50,9 +47,9 @@ class LocationTrackingActivity : AppCompatActivity() {
 
         override fun onMoveEnd(detector: MoveGestureDetector) {}
     }
-    private lateinit var mapView: MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        showWhenLockedAndTurnScreenOn()
         super.onCreate(savedInstanceState)
         mapView = MapView(
             this, MapInitOptions(
@@ -67,22 +64,13 @@ class LocationTrackingActivity : AppCompatActivity() {
             onMapReady()
         }
 
-//        getAppOverlayPermission()
-        getIntentExtras(intent)
+        getPermissions()
     }
 
-    private fun getAppOverlayPermission() {
+    private fun getPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val intent =
-                Intent(ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
-            startActivity(intent)
-        }
-    }
-
-    private fun getIntentExtras(intent: Intent) {
-        val extras = intent.extras
-        extras?.let {
-            val offer = extras.getSerializable(Constants.OFFER_EXTRA)
+//            PermissionUtil.goToNotificationSettings(this)
+            PermissionUtil.goToAppOverlaySettings(this)
         }
     }
 
@@ -94,7 +82,8 @@ class LocationTrackingActivity : AppCompatActivity() {
         )
         mapView.getMapboxMap().loadStyleUri(
             Style.MAPBOX_STREETS
-        ) {
+        )
+        {
             initLocationComponent()
             setupGesturesListener()
         }
@@ -164,4 +153,18 @@ class LocationTrackingActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         locationPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+
+    private fun showWhenLockedAndTurnScreenOn() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true)
+            setTurnScreenOn(true)
+        } else {
+            window.addFlags(
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+            )
+        }
+    }
 }
+
+

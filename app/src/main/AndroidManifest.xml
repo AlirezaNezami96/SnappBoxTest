@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--    For launching activity that shows new snappbox offer-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <!--    For launching activity that shows new snappbox offer-->
@@ -31,6 +30,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".presentation.offer.OfferActivity"
+            android:exported="true"
+            android:showOnLockScreen="true"
+            android:label="@string/title_activity_offer"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
 
         <service

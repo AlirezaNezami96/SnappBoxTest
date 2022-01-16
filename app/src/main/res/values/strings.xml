@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">MapBoxTest</string>
     <string name="title_activity_location">location tracking</string>
+    <string name="title_activity_offer">offer tracking</string>
     <string name="public_token">pk.eyJ1IjoiYWxpc2hlcmxvY2siLCJhIjoiY2t5OGQwODcwMWVraDJvbzR0bjI3NXNrMCJ9.SHroTdgZ5feFYlB9nB30ZQ</string>
     <string name="fcm_token">FCM token: %1$s</string>
+    <string name="accept_offer">قبول درخواست</string>
+    <string name="origin_text">origin %1$s</string>
+    <string name="new_offer">درخواست جدید</string>
 </resources>
