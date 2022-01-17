@@ -1,5 +1,6 @@
 package com.mindlab.mapboxtest.presentation.components
 
+import android.graphics.DashPathEffect
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -9,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -30,7 +33,6 @@ fun CircularRevealLayout(
 
     Box(
         modifier = modifier
-
             .background(Color.Transparent)
             .drawBehind {
                 drawCircle(

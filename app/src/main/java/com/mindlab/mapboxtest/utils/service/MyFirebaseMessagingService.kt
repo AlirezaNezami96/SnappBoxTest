@@ -8,6 +8,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mindlab.mapboxtest.R
 import com.mindlab.mapboxtest.data.IncomingOffer
 import com.mindlab.mapboxtest.presentation.offer.OfferActivity
 import com.mindlab.mapboxtest.utils.Constants
@@ -25,6 +26,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
+        val msg = getString(R.string.fcm_token, p0)
+        Log.d(TAG, msg)
     }
 
     override fun onMessageReceived(p0: RemoteMessage) {
